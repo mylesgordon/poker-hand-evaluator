@@ -4,11 +4,16 @@
 
 int main()
 {
-    Deck deck;
-    // std::cout << deck.draw().to_string() << '\n';
+    bool should_run { true };
+    while (should_run) {
+        Hand hand;
+        auto evaluation = hand.evalulate();
+        std::cout << evaluation << '\n';
 
-    Hand hand;
-    hand.evalulate();
+        if (evaluation != "None") {
+            should_run = false;
+        }
+    }
 
     return 0;
 }

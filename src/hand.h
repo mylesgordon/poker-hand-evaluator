@@ -20,7 +20,9 @@ public:
 
     std::string evalulate()
     {
-        if (is_royal_flush()) {
+        if (is_flush()) {
+            return "Flush";
+        } else if (is_royal_flush()) {
             return "Royal Flush";
         } else {
             return "None";
@@ -45,15 +47,13 @@ private:
 
     bool is_flush()
     {
-        bool is_flush { false };
         for (int i = 1; i < 5; i++) {
-            if (m_hand[0].get_suit() == m_hand[i].get_suit()) {
-                is_flush = true;
-                break;
+            if (m_hand[0].get_suit() != m_hand[i].get_suit()) {
+                return false;
             }
         }
 
-        return is_flush;
+        return true;
     }
 
     bool is_royal_flush()
