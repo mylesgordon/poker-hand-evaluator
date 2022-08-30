@@ -1,4 +1,8 @@
+#pragma once
+
 #include "card.h"
+#include <algorithm>
+#include <random>
 #include <vector>
 
 class Deck {
@@ -13,9 +17,9 @@ public:
                 m_deck.push_back(new_card);
             }
         }
-    }
 
-    // TODO: add shuffle
+        shuffle();
+    }
 
     Card draw()
     {
@@ -28,5 +32,12 @@ public:
     const std::vector<Card>& get_deck() { return m_deck; };
 
 private:
+    void shuffle()
+    {
+        auto seed = std::random_device {};
+        auto rng = std::default_random_engine { seed() };
+        std::shuffle(std::begin(m_deck), std::end(m_deck), rng);
+    }
+
     std::vector<Card> m_deck;
 };
